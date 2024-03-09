@@ -40,10 +40,8 @@
 
 		void Start()
 		{
-
 			_locations = new Vector2d[_artifacts.Length];
 			_spawnedObjects = new List<GameObject>();
-
 
 
 			for (int i = 0; i < _artifacts.Length; i++) 
@@ -68,8 +66,7 @@
 
 		private void Update()
 		{
-			int count = _spawnedObjects.Count;
-			for (int i = 0; i < count; i++)
+			for (int i = 0; i < _spawnedObjects.Count; i++)
 			{
 				var spawnedObject = _spawnedObjects[i];
 				var location = _locations[i];

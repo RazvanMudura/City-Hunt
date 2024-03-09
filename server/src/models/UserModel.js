@@ -54,10 +54,6 @@ const UserSchema = new Schema({
 
     artifacts: [
         {
-            name: {
-                type: String,
-                required: true
-            },
             id: {
                 type: String,
                 required: true
@@ -68,10 +64,6 @@ const UserSchema = new Schema({
 
     achievements: [
         {
-            name: {
-                type: String,
-                required: true
-            },
             id: {
                 type: String,
                 required: true
