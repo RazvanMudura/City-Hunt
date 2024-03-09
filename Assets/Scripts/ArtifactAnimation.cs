@@ -31,8 +31,4 @@ public class RotateArtifact : MonoBehaviour
     }
 
 
-    private void OnMouseDown() 
-    {
-        Debug.Log("Test");
-    }
 }
