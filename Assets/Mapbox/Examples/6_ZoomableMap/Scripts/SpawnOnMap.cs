@@ -15,12 +15,6 @@
 		[SerializeField]
 		AbstractMap _map;
 
-		[SerializeField]
-		float _spawnScale = 100f;
-
-
-
-
     	[Header("ALL PREFABS")]
 		[SerializeField]
 		GameObject _playerPrefab;
@@ -53,11 +47,14 @@
 					string artifactLocation = properties.location;
 					string artifactId = properties.id;
 
+
 					_locations[i] = Conversions.StringToLatLon(artifactLocation);
+					Vector3 objectPosition = _map.GeoToWorldPosition(_locations[i], true);
+
 
 					var instance = Instantiate(_artifacts[i]);
-					instance.transform.localPosition = _map.GeoToWorldPosition(_locations[i], true);
-					instance.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
+					instance.transform.localPosition = new Vector3(objectPosition[0], _artifacts[i].transform.position.y, objectPosition[2]);
+
 					_spawnedObjects.Add(instance);
 				}
 			}
@@ -70,8 +67,10 @@
 			{
 				var spawnedObject = _spawnedObjects[i];
 				var location = _locations[i];
-				spawnedObject.transform.localPosition = _map.GeoToWorldPosition(location, true);
-				spawnedObject.transform.localScale = new Vector3(_spawnScale, _spawnScale, _spawnScale);
+
+
+				Vector3 objectPosition = _map.GeoToWorldPosition(location, true);
+				spawnedObject.transform.localPosition = new Vector3(objectPosition[0], spawnedObject.transform.position.y, objectPosition[2]);
 			}
 		}
 	}
