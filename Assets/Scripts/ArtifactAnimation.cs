@@ -9,7 +9,7 @@ public class RotateArtifact : MonoBehaviour
     private float amplitude = 0.4f;
     private float frequency = 0.50f;
     private float initialHeight = 1f;
-
+    public bool isNear = false;
 
 
     void Start()
@@ -20,7 +20,8 @@ public class RotateArtifact : MonoBehaviour
 
     void Update()
     {
-        RotateAndFloat();
+        if (!isNear)
+            RotateAndFloat();
     }
 
 

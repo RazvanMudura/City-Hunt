@@ -63,7 +63,7 @@ public class HandleAuthentication : MonoBehaviour
         body.Add("password", loginPassword.GetComponent<TMP_InputField>().text);
 
 
-        UnityWebRequest request = UnityWebRequest.Post("http://localhost:8080/login", JsonConvert.SerializeObject(body), "application/json");
+        UnityWebRequest request = UnityWebRequest.Post("https://cityhunt-backend.onrender.com/login", JsonConvert.SerializeObject(body), "application/json");
         yield return request.SendWebRequest();
 
 
@@ -88,7 +88,7 @@ public class HandleAuthentication : MonoBehaviour
         body.Add("password", registerPassword.GetComponent<TMP_InputField>().text);
 
 
-        UnityWebRequest request = UnityWebRequest.Post("http://localhost:8080/register", JsonConvert.SerializeObject(body), "application/json");
+        UnityWebRequest request = UnityWebRequest.Post("https://cityhunt-backend.onrender.com/register", JsonConvert.SerializeObject(body), "application/json");
         yield return request.SendWebRequest();
 
 
@@ -107,7 +107,7 @@ public class HandleAuthentication : MonoBehaviour
 
     private IEnumerator LogoutHandler()
     {
-        UnityWebRequest request = UnityWebRequest.Get("http://localhost:8080/logout");
+        UnityWebRequest request = UnityWebRequest.Get("https://cityhunt-backend.onrender.com/logout");
         yield return request.SendWebRequest();
 
 

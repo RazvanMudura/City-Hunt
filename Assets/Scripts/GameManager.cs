@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator GetUser(string token)
     {
 
-        UnityWebRequest request = UnityWebRequest.Get("http://localhost:8080/user");
+        UnityWebRequest request = UnityWebRequest.Get("https://cityhunt-backend.onrender.com/user");
         request.SetRequestHeader("Content-Type", "application/json");
         request.SetRequestHeader("Authorization", "Bearer " + token);
         yield return request.SendWebRequest();

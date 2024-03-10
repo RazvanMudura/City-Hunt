@@ -19,11 +19,6 @@ public class RenderCollectedArtifacts : MonoBehaviour
         SpawnOnMap properties = gameManager.GetComponent<SpawnOnMap>();
         artifacts = properties._artifacts;
 
-
-        for (int i = 0; i < artifacts.Length; i++) 
-        {
-            Instantiate(button, this.transform);
-        }
     }
 
 }
