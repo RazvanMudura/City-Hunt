@@ -72,12 +72,47 @@ const getUserByUsername = async (request, response) => {
 }
 
 
-const addUserArtifact = async (request, response) => {
+const addArtifact = async (request, response) => {
+    const id = request.body.id
 
+    try {
+        for (let i = 0; i < request.user.artifacts.length; i++) {
+            if (request.user.artifacts[i].id === id) 
+                return response.status(400).json({ error: "ID already exists!" })
+        }
+
+
+
+        request.user.artifacts = [...request.user.artifacts, { id }]
+        await request.user.save()
+
+        return response.json(request.user)
+    }
+    catch(error) {
+        console.log(error)
+        return response.status(400).json(error)
+    }
 }
 
-const addUserAcheivement = async (request, response) => {
+
+const addAchievement = async (request, response) => {
+    const id = request.body.id
     
+
+    try {
+        for (let i = 0; i < request.user.achievements.length; i++) {
+            if (request.user.achievements[i].id === id) 
+                return response.status(400).json({ error: "ID already exists!" })
+        }
+
+        request.user.achievements = [...request.user.achievements, { id }]
+        await request.user.save()
+
+        return response.json(request.user)
+    }
+    catch(error) {
+        return response.status(400).json(error)
+    }
 }
 
 
@@ -88,5 +123,7 @@ module.exports = {
     logoutUser,
     registerUser,
     getUser,
-    getUserByUsername
+    getUserByUsername,
+    addArtifact,
+    addAchievement
 }

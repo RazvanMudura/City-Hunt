@@ -8,7 +8,9 @@ const {
     logoutUser,
     registerUser,
     getUser,
-    getUserByUsername
+    getUserByUsername,
+    addArtifact,
+    addAchievement
 } = require("../controllers/UserController")
 
 
@@ -17,6 +19,9 @@ router.post("/register", registerUser)
 router.get("/logout", auth, logoutUser)
 router.get("/user", auth, getUser)
 router.get("/user/:username", getUserByUsername)
+router.post("/add-artifact", auth, addArtifact)
+router.post("/add-achievement", auth, addAchievement)
+
 
 
 

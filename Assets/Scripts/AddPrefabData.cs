@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class AddPrefabData : MonoBehaviour
 {
-
     public string location;
     public string id;
 }

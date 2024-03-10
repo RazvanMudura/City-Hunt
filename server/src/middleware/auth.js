@@ -12,6 +12,7 @@ const auth = async (request, response, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET)
         const user = await UserModel.findOne({ _id: decoded._id, "tokens.token": token })
 
+
         if (!user)
             throw new Error("Invalid token!")
 
@@ -21,7 +22,6 @@ const auth = async (request, response, next) => {
         next()
     }
     catch (error) {
-        console.log(error)
         return response.status(401).send({ error: "Not Authenticated" })
     }
 }

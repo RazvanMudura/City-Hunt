@@ -22,8 +22,7 @@
 		[SerializeField]
 		GameObject _hiddenPrefab;
 
-		[SerializeField]
-		GameObject[] _artifacts;
+		public GameObject[] _artifacts;
 
 
 
