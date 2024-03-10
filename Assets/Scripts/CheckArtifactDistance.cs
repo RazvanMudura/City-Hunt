@@ -29,6 +29,7 @@ public class CheckArtifactDistance : MonoBehaviour
             if (id.Equals("timisoara-10"))
             {
                 Debug.Log("TRUEEEEEEE");
+                Debug.Log(artifacts[i].GetComponent<RotateArtifact>().isNear);
                 artifacts[i].GetComponent<RotateArtifact>().isNear = true;
             }
             else {
