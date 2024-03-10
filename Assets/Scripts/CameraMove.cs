@@ -5,30 +5,44 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-    private float rotationSpeed = 500.0f;
-    private float currentRotationX = 0f;
+    private float rotationSpeed = 10.0f;
+    private float currentRotationX = 15f;
+    private Vector2 touchStart;
+    private bool isTouching = false;
 
+    
     void Update()
     {
-        if (Input.GetMouseButton(0))
-            CamOrbit();
-    }
-
-
-    private void CamOrbit()
-    {
-        if (Input.GetAxis("Mouse Y") != 0 || Input.GetAxis("Mouse X") != 0)
+        if (Input.touchCount == 1)
         {
-            float verticalInput = Input.GetAxis("Mouse Y") * rotationSpeed * Time.deltaTime;
-            float horizontalInput = Input.GetAxis("Mouse X") * rotationSpeed * Time.deltaTime;
+            Touch touch = Input.GetTouch(0);
 
-            // Rotate around the x-axis
-            currentRotationX -= verticalInput;
-            currentRotationX = Mathf.Clamp(currentRotationX, 15f, 70f);
-            transform.localRotation = Quaternion.Euler(currentRotationX, transform.localEulerAngles.y, transform.localEulerAngles.z);
+            if (touch.phase == TouchPhase.Began)
+            {
+                touchStart = touch.position;
+                isTouching = true;
+            }
+            else if (touch.phase == TouchPhase.Moved && isTouching)
+            {
+                Vector2 touchDelta = touch.position - touchStart;
 
-            // Rotate around the y-axis
-            transform.Rotate(Vector3.up, horizontalInput, Space.World);
+                float verticalInput = -touchDelta.y * rotationSpeed * Time.deltaTime;
+                float horizontalInput = touchDelta.x * rotationSpeed * Time.deltaTime;
+
+                // Rotate around the x-axis
+                currentRotationX += verticalInput;
+                currentRotationX = Mathf.Clamp(currentRotationX, 15f, 75f);
+                transform.localRotation = Quaternion.Euler(currentRotationX, transform.localEulerAngles.y, transform.localEulerAngles.z);
+
+                // Rotate around the y-axis
+                transform.Rotate(Vector3.up, horizontalInput, Space.World);
+
+                touchStart = touch.position;
+            }
+        }
+        else if (Input.touchCount == 0)
+        {
+            isTouching = false;
         }
     }
 }
