@@ -27,21 +27,17 @@
 			currLoc = _locationProvider.CurrentLocation;
 
 			if (currLoc.IsLocationServiceInitializing)
-			{
-			}
+			{}
 			else
 			{
 				if (!currLoc.IsLocationServiceEnabled)
-				{
-				}
+				{}
 				else
 				{
 					if (currLoc.LatitudeLongitude.Equals(Vector2d.zero))
-					{
-					}
+					{}
 					else
-					{
-					}
+					{}
 				}
 			}
 
